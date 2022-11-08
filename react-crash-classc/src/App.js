@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import './App.css';
+import Header from './components/layout/Header';
+import AddToDo from './components/AddToDo';
 import ToDos from './components/ToDos';
 
 class App extends Component {
@@ -40,11 +42,27 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
   }
 
+  //* Add To Do
+  AddToDo = (title) => {
+    const newToDo = {
+      id: 4,
+      title: title,
+      completed: false
+    }
+    this.setState({ todos: [...this.state.todos, newToDo] });
+  }
+
   render() {
     return (
       <div className="App">
-        <ToDos todos={this.state.todos} markComplete={this.markComplete}
-          delToDo={this.delToDo} />
+        <div className="container">
+          <Header />
+          <AddToDo AddToDo={this.AddToDo} />
+          <ToDos
+            todos={this.state.todos}
+            markComplete={this.markComplete}
+            delToDo={this.delToDo} />
+        </div>
       </div>
     );
   }
