@@ -5,7 +5,7 @@ import Header from './components/layout/Header';
 import AddToDo from './components/AddToDo';
 import ToDos from './components/ToDos';
 import About from './components/pages/About';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=100')
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
       .then(res => this.setState({ todos: res.data }))
   }
 
@@ -37,12 +37,13 @@ class App extends Component {
 
   //* Add To Do
   AddToDo = (title) => {
-    const newToDo = {
-      id: uuidv4(),
-      title: title,
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+      title,
       completed: false
-    }
-    this.setState({ todos: [...this.state.todos, newToDo] });
+    })
+      .then(res => this.setState({ todos: [...this.state.todos, res.data] }));
+
+    // this.setState({ todos: [...this.state.todos, newToDo] });
   }
 
   render() {
