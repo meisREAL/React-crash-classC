@@ -2,9 +2,10 @@ import React, { Component } from "react";
 
 class ToDos extends Component {
     render() {
+        console.log(this.props.todos)
         return (
-            <div className="">
-                <h1>stuff</h1>
+            <div>
+                <h1>ToDos</h1>
             </div>
         );
     }
