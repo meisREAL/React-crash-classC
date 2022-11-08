@@ -3,22 +3,23 @@ import './App.css';
 import Header from './components/layout/Header';
 import AddToDo from './components/AddToDo';
 import ToDos from './components/ToDos';
+import { v4 as uuidv4 } from 'uuid'
 
 class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: uuidv4(),
         title: 'Take out the trash',
         completed: false,
       },
       {
-        id: 2,
+        id: uuidv4(),
         title: 'Dinner with wife',
         completed: true,
       },
       {
-        id: 3,
+        id: uuidv4(),
         title: 'Meeting with boss',
         completed: false,
       },
@@ -45,7 +46,7 @@ class App extends Component {
   //* Add To Do
   AddToDo = (title) => {
     const newToDo = {
-      id: 4,
+      id: uuidv4(),
       title: title,
       completed: false
     }
